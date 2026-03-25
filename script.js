@@ -1,3 +1,17 @@
+//Notes:
+
+let counter = 0;
+//my counter function
+function myFunc(){
+  counter ++;
+  return counter;
+}
+
+console.log(myFunc());
+console.log(myFunc());
+console.log(myFunc());
+console.log(myFunc());
+
 // ----- Functions to implement -----
 
 // 1) myFunc(): persistent counter
