@@ -1,6 +1,6 @@
-let counter = 0;
+var counter = 0;
 function myFunc(){
-  counter++;
+  counter = counter + 1;
   return counter;
 }
 
