@@ -47,31 +47,31 @@ function onMyFuncClick() {
 }
 
 function onRandomClick() {
-  const max = $('inpRandomMax').value;
+  const max = $('maxRand').value;
   const val = getRandomNum(max);
   setText('outRandom', val);
 }
 
 function onAdderClick() {
-  const x = $('inpAddX').value;
-  const y = $('inpAddY').value;
+  const x = $('addX').value;
+  const y = $('addY').value;
   const val = myAdder(x, y);
   setText('outAdder', val);
 }
 
 function onDistanceClick() {
-  const x1 = Number($('inpX1').value);
-  const y1 = Number($('inpY1').value);
-  const x2 = Number($('inpX2').value);
-  const y2 = Number($('inpY2').value);
+  const x1 = Number($('x1').value);
+  const y1 = Number($('y1').value);
+  const x2 = Number($('x2').value);
+  const y2 = Number($('y2').value);
   const val = distance(x1, y1, x2, y2);
   setText('outDistance', val);
 }
 
 function onQuadraticClick() {
-  const a = Number($('inpA').value);
-  const b = Number($('inpB').value);
-  const c = Number($('inpC').value);
+  const a = Number($('qa').value);
+  const b = Number($('qb').value);
+  const c = Number($('qc').value);
   const roots = quadratic(a, b, c);
   setText('outQuadratic', JSON.stringify(roots));
 }
