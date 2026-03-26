@@ -1,44 +1,85 @@
-//Notes:
-
 let counter = 0;
-//my counter function
 function myFunc(){
   counter ++;
   return counter;
 }
 
-console.log(myFunc());
-console.log(myFunc());
-console.log(myFunc());
-console.log(myFunc());
-
-// ----- Functions to implement -----
-
-// 1) myFunc(): persistent counter
-// Already handled by your 'counter' and 'myFunc' above!
-
-// 2) getRandomNum(max): 1..max int or 0 if invalid
-function getRandomNum(max) {
+function getRandomNum(max){
   let limit = parseInt(max);
-  // Check if it's not a number or less than 1
   if (isNaN(limit) || limit < 1) {
     return 0;
   }
-  // Standard 1 to max formula
   return Math.floor(Math.random() * limit) + 1;
 }
 
-// 3) myAdder(x, y): numeric sum
-function myAdder(x, y) {
-  // Convert strings to numbers so "3"+"5" doesn't become "35"
+function myAdder(x, y){
   return parseFloat(x) + parseFloat(y);
 }
 
-// 4) distance(x1, y1, x2, y2): Euclidean distance
-function distance(x1, y1, x2, y2) {
-  // TODO: Use Math.sqrt() and the distance formula
+function distance(x1, y1, x2, y2){
+  let a = x2 - x1;
+  let b = y2 - y1;
+  return Math.sqrt(a * a + b * b);
 }
 
-// 5) quadratic(a, b, c)
-function quadratic(a, b, c) {
-  // TODO: still have to calculate the discrimanant and return array
+function quadratic(a, b, c){
+  let disc = b * b - 4 * a * c;
+
+  if (disc > 0) {
+    let r1 = (-b + Math.sqrt(disc)) / (2 * a);
+    let r2 = (-b - Math.sqrt(disc)) / (2 * a);
+    return [r1, r2];
+  } else if (disc === 0) {
+    return [-b / (2 * a)];
+  } else {
+    let real = -b / (2 * a);
+    let imag = Math.sqrt(-disc) / (2 * a);
+    return [real + "+" + imag + "i", real + "-" + imag + "i"];
+  }
+}
+
+function $(id) { return document.getElementById(id); }
+function setText(id, value) { $(id).textContent = String(value); }
+
+function onMyFuncClick() {
+  const val = myFunc();
+  setText('outMyFunc', val);
+}
+
+function onRandomClick() {
+  const max = $('inpRandomMax').value;
+  const val = getRandomNum(max);
+  setText('outRandom', val);
+}
+
+function onAdderClick() {
+  const x = $('inpAddX').value;
+  const y = $('inpAddY').value;
+  const val = myAdder(x, y);
+  setText('outAdder', val);
+}
+
+function onDistanceClick() {
+  const x1 = Number($('inpX1').value);
+  const y1 = Number($('inpY1').value);
+  const x2 = Number($('inpX2').value);
+  const y2 = Number($('inpY2').value);
+  const val = distance(x1, y1, x2, y2);
+  setText('outDistance', val);
+}
+
+function onQuadraticClick() {
+  const a = Number($('inpA').value);
+  const b = Number($('inpB').value);
+  const c = Number($('inpC').value);
+  const roots = quadratic(a, b, c);
+  setText('outQuadratic', JSON.stringify(roots));
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  $('btnMyFunc').addEventListener('click', onMyFuncClick);
+  $('btnRandom').addEventListener('click', onRandomClick);
+  $('btnAdder').addEventListener('click', onAdderClick);
+  $('btnDistance').addEventListener('click', onDistanceClick);
+  $('btnQuadratic').addEventListener('click', onQuadraticClick);
+});
